@@ -1,0 +1,3 @@
+backups
+configs/*
+!configs/__template__.env
