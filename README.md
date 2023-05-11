@@ -21,7 +21,3 @@ Tested with servers from Combell.
   - script asks which config to use every time
   - script asks for confirmation
   - all remote and local file paths are fully configurable
-
-
-## TODO
-- fix pesky `tar: ./wp-content: file changed as we read it` errors

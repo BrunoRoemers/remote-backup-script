@@ -112,7 +112,7 @@ fi
 ##################
 
 echo "Type 'y' to continue. Type 'n' to abort."
-while [ true ]; do
+while true; do
   # wait on user reply...
   read -r _CONTINUE
 
@@ -147,9 +147,7 @@ if [[ "$SHOULD_BACKUP_FOLDER" -eq 1 ]]; then
 
   # NOTE: this requires a valid ssh key or will prompt for password
   # shellcheck disable=SC2029
-  ssh "$REMOTE_USER@$REMOTE_SERVER" "mkdir -p '$REMOTE_ARCHIVE_PATH' && cd '$REMOTE_ARCHIVE_PATH' && tar -czf $CODE_BACKUP_FILE_NAME.tgz --exclude='*.zip' --dereference --directory '$REMOTE_TARGET_PATH' ."
-
-  # TODO use rsync or ignore the `tar: ./wp-content: file changed as we read it` error
+  ssh "$REMOTE_USER@$REMOTE_SERVER" "mkdir -p '$REMOTE_ARCHIVE_PATH/__rsync' && cd '$REMOTE_ARCHIVE_PATH' && rsync -av --delete '$REMOTE_TARGET_PATH/' '$REMOTE_ARCHIVE_PATH/__rsync/' && tar -czf $CODE_BACKUP_FILE_NAME.tgz --exclude='*.zip' --dereference --directory '$REMOTE_ARCHIVE_PATH/__rsync' ."
 
   ####################
   # DOWNLOAD ARCHIVE #
