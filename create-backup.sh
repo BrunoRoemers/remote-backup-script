@@ -191,10 +191,10 @@ elif [[ -f "$REMOTE_TARGET_PATH/.env" ]]; then
 elif [[ -f "$REMOTE_TARGET_PATH/wp-config.php" ]]; then
   echo "Found file '$REMOTE_TARGET_PATH/wp-config.php'. Assuming Wordpress install..."
   
-  DB_HOST="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define('DB_HOST'," | cut -s -d "'" -f 4)"
-  DB_USER="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define('DB_USER'," | cut -s -d "'" -f 4)"
-  DB_PASSWORD="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define('DB_PASSWORD'," | cut -s -d "'" -f 4)"
-  DB_NAME="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define('DB_NAME'," | cut -s -d "'" -f 4)"
+  DB_HOST="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define( *'DB_HOST'," | cut -s -d "'" -f 4)"
+  DB_USER="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define( *'DB_USER'," | cut -s -d "'" -f 4)"
+  DB_PASSWORD="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define( *'DB_PASSWORD'," | cut -s -d "'" -f 4)"
+  DB_NAME="\$(cat '$REMOTE_TARGET_PATH/wp-config.php' | grep "define( *'DB_NAME'," | cut -s -d "'" -f 4)"
 fi
 
 if [[ -z "\$DB_HOST" || -z "\$DB_USER" || -z "\$DB_PASSWORD" || -z "\$DB_NAME" ]]; then
